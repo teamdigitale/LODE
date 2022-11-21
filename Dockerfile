@@ -7,6 +7,6 @@ RUN ./gradlew clean build
 FROM openjdk:11-jdk-slim
 LABEL maintainer=g.nespolino@gmail.com
 USER 1001
-COPY --from=builder /app/build/libs/lodview.war /lodview.war
+COPY --from=builder /app/build/libs/lode.jar /lode.jar
 CMD ["java", "-jar", "/lodview.war"]
 EXPOSE 8080 8009
