@@ -1,18 +1,12 @@
-FROM  maven:3.6.3-jdk-8
+FROM openjdk:11-jdk-slim as builder
+WORKDIR /app
+COPY . /app
+RUN ./gradlew clean build
 
-ARG LODE_EXTERNAL_URL
-ARG WEBVOWL_EXTERNAL_URL
-ARG USE_HTTPS
-
-RUN cd /opt && \
-	git clone https://github.com/essepuntato/LODE.git
-
-RUN echo "externalURL=${LODE_EXTERNAL_URL}\nwebvowl=${WEBVOWL_EXTERNAL_URL}\nuseHTTPs=${USE_HTTPS}" > /opt/LODE/src/main/webapp/config.properties
-
-#RUN cat /opt/LODE/src/main/webapp/config.propexxwties
-
-WORKDIR /opt/LODE
-
-EXPOSE 8080
-
-ENTRYPOINT ["mvn", "clean", "jetty:run"]
+# Execute container as user.
+FROM openjdk:11-jdk-slim
+LABEL maintainer=g.nespolino@gmail.com
+USER 1001
+COPY --from=builder /app/build/libs/lode.jar /lode.jar
+CMD ["java", "-jar", "/lode.jar"]
+EXPOSE 8080 8009
