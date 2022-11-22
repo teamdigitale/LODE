@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
 env:
-  GITHUB_WORKFLOW: dati-semantic-lodview
+  GITHUB_WORKFLOW: dati-semantic-lode
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 jobs:
@@ -120,4 +120,4 @@ jobs:
           workflow_file_name: update-config.yaml
           ref: dev
           wait_interval: 20
-          inputs: '{"serviceName": "dati-semantic-lodview", "imageWithNewTag": "${{ steps.extractImage.outputs.imageName }}"}'
+          inputs: '{"serviceName": "${GITHUB_WORKFLOW}", "imageWithNewTag": "${{ steps.extractImage.outputs.imageName }}"}'
