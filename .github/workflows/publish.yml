@@ -120,4 +120,4 @@ jobs:
           workflow_file_name: update-config.yaml
           ref: dev
           wait_interval: 20
-          inputs: '{"serviceName": "${GITHUB_WORKFLOW}", "imageWithNewTag": "${{ steps.extractImage.outputs.imageName }}"}'
+          inputs: '{"serviceName": "${{ env.GITHUB_WORKFLOW }}", "imageWithNewTag": "${{ steps.extractImage.outputs.imageName }}"}'
