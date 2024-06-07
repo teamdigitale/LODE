@@ -69,5 +69,5 @@ platforms:
   - web
 releaseDate: '2021-12-25'
 softwareType: standalone/other
-url: 'https://github.com/teamdigitale/LODE'
+url: 'https://github.com/teamdigitale/dati-semantic-lode'
 logo: src/main/resources/static/LODELogo-120x364.png
